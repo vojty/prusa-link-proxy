@@ -1,7 +1,4 @@
 import { createHash } from "node:crypto";
-import queryString from "fast-querystring";
-import type { FastifyInstance } from "fastify";
-import { parseSize } from "xbytes";
 
 const md5 = (s: string) => {
 	const hash = createHash("md5");
@@ -32,29 +29,4 @@ export const createDigestAuthHeader = ({
 	const response = md5(`${ha1}:${nonce}:${ha2}`);
 	const authstring = `Digest username="${username}", realm="${realm}", nonce="${nonce}", uri="${uri}", response="${response}"`;
 	return authstring;
-};
-
-// based on https://github.com/fastify/fastify-formbody/blob/master/formbody.js
-export const registerBodyParser = (
-	server: FastifyInstance,
-	bodyLimitString: string, // e.g. "50MiB"
-) => {
-	const bodyLimit = parseSize(bodyLimitString);
-
-	type ContentParser = Parameters<typeof server.addContentTypeParser>[2];
-
-	const contentParser: ContentParser = (req, body, done) => {
-		done(null, queryString.parse(body.toString()));
-	};
-
-	server.addContentTypeParser(
-		"application/gcode+binary",
-		{ parseAs: "buffer", bodyLimit },
-		contentParser,
-	);
-	server.addContentTypeParser(
-		"application/gcode",
-		{ parseAs: "buffer", bodyLimit },
-		contentParser,
-	);
 };
