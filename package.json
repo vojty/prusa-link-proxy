@@ -4,8 +4,8 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"dev": "tsx watch src/main.ts",
-		"start": "tsx src/main.ts",
+		"dev": "node --watch src/main.js",
+		"start": "node src/main.js",
 		"format": "biome format --write",
 		"lint": "biome lint && tsc --noEmit",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -14,14 +14,13 @@
 	"license": "ISC",
 	"description": "",
 	"dependencies": {
-		"@types/http-proxy": "^1.17.15",
-		"@types/node": "^22.10.2",
 		"dotenv": "^16.4.7",
-		"http-proxy": "^1.18.1",
-		"tsx": "^4.19.2",
-		"typescript": "^5.7.2"
+		"http-proxy": "^1.18.1"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4"
+		"@types/http-proxy": "^1.17.15",
+		"@types/node": "^22.10.2",
+		"@biomejs/biome": "1.9.4",
+		"typescript": "^5.7.2"
 	}
 }
