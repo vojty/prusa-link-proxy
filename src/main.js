@@ -26,7 +26,11 @@ if (!PRUSA_LINK_USERNAME || !PRUSA_LINK_PASSWORD || !PRUSA_LINK_ORIGIN) {
 	process.exit(1);
 }
 
-const authRoutes = ["/api", "/thumb"];
+const authRoutes = [
+	"/api", // API routes
+	"/thumb", // Gcode thumbnails
+	"/usb", // file downloads
+];
 const upstream = PRUSA_LINK_ORIGIN.replace(/\/$/, "");
 const log = PROXY_DEBUG
 	? console.log.bind(console, `${new Date().toISOString()} |`)

@@ -27,7 +27,7 @@ You need to have Node.js (ideally `>=20.18.1` but older `20.x` will probably wor
     ```
 3. Install the dependencies
     ```bash
-    npm ci
+    npm ci --omit=dev
     ```
 4. Start the proxy server
     ```bash
